@@ -16,6 +16,7 @@ public class TestController {
 	@Autowired
 	private PostDAO postDAO;
 
+	// http://localhost:8080/test1
 	@GetMapping("/test1")
 	@ResponseBody
 	public String test1() {

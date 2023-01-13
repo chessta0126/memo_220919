@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>회원가입</title>
 
 	<!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> 
@@ -18,15 +18,15 @@
 </head>
 <body>
 	<div id="wrap">
-		<header class="bg-danger">
+		<header class="d-flex align-items-center p-5">
 			<jsp:include page="../include/header.jsp"/>
 		</header>
 		
-		<section class="contents bg-info">
+		<section class="container contents">
 			<jsp:include page="../${viewName}.jsp"/>
 		</section>
 		
-		<footer class="bg-primary">
+		<footer class="d-flex justify-content-center align-items-center">
 			<jsp:include page="../include/footer.jsp"/>
 		</footer>
 	</div>
