@@ -40,7 +40,7 @@ public class UserRestController {
 	}
 	
 	@PostMapping("/sign_up")
-	public void signUp(
+	public Map<String, Object> signUp(
 			@RequestParam("loginId") String loginId
 			,@RequestParam("password") String password
 			,@RequestParam("name") String name
@@ -52,6 +52,11 @@ public class UserRestController {
 		
 		// DB insert
 		userBO.addUser(loginId, hashedPassword, name, email);
+		
+		Map<String, Object> result = new HashMap<>();
+		result.put("code", 1);
+		result.put("result", "성공");
+
+		return result;
 	}
-	
 }

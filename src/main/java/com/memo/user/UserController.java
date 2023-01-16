@@ -22,21 +22,9 @@ public class UserController {
 		return "template/layout";
 	}
 	
-	@PostMapping("/sign_up")
-	public String signUp(Model model) {
-		model.addAttribute("viewName","user/signUp");
-		return "template/layout";
-	}
-	
 	// http://localhost:8080/user/sign_up_view
 	@GetMapping("/sign_in_view")
 	public String signInView(Model model) {
-		model.addAttribute("viewName","user/signIn");
-		return "template/layout";
-	}
-		
-	@PostMapping("/sign_in")
-	public String signIn(Model model) {
 		model.addAttribute("viewName","user/signIn");
 		return "template/layout";
 	}
