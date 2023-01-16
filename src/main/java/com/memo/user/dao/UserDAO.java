@@ -1,14 +1,21 @@
 package com.memo.user.dao;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import com.memo.user.model.User;
 
 @Repository
 public interface UserDAO {
 	public boolean existLoginId(String loginId);
+	
 	public void insertUser(
-			@RequestParam("loginId") String loginId
-			,@RequestParam("hashedPassword") String hashedPassword
-			,@RequestParam("name") String name
-			,@RequestParam("email") String email);
+			@Param("loginId") String loginId
+			,@Param("password") String password
+			,@Param("name") String name
+			,@Param("email") String email);
+	
+	public User selectUserByLoginIdPassword(
+			@Param("loginId") String loginId
+			,@Param("password") String password);
 }

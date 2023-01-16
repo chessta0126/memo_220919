@@ -64,23 +64,18 @@
 			// AJAX 통신 - 중복확인
 			$.ajax({
 				// request
-				url : "user/is_duplicated_id",
-				data : {"loginId" : loginId}
+				url : "/user/is_duplicated_id"
+				, data : {"loginId" : loginId}
 
 				// response
 				, success : function(data) {
-					if (data.code == 1) {
-						// 성공
-						if (data.result) {
-							// 중복
-							$('#idCheckDuplicated').removeClass('d-none');
-						} else {
-							// 사용 가능
-							$('#idCheckOk').removeClass('d-none');
-						}
+					// 성공
+					if (data.result) {
+						// 중복
+						$('#idCheckDuplicated').removeClass('d-none');
 					} else {
-						// 실패
-						alert(data.errorMessage);
+						// 사용 가능
+						$('#idCheckOk').removeClass('d-none');
 					}
 				}
 				,error:function(e){
@@ -95,8 +90,8 @@
 			
 			// validation
 			let loginId = $('#loginId').val().trim();
-			let password = $('#password').val().trim();
-			let confirmPassword = $('#confirmPassword').val().trim();
+			let password = $('#password').val();
+			let confirmPassword = $('#confirmPassword').val();
 			let name = $('#name').val().trim();
 			let email = $('#email').val().trim();
 			

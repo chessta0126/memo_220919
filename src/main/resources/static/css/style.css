@@ -1,10 +1,11 @@
 @charset "UTF-8";
 
-header {height:120px; background-color: #999;}
-.contents{height:600px; background-color: #fff;}
-.signUpParameterMenu{
-	background-color: #999;
-	font-weight: bold;
-	}
+header {height:100px; background-color: #999;}
+.contents{height:500px; background-color: #fff;}
+footer{height:100px; background-color: #999;}
 
-footer{height:120px; background-color: #999;}
+.header-box {height:100px;}
+.footer-box {height:100px;}
+
+.sign-up-box {width:550px;}
+.sign-up-table th {background:#D8D8D8;}
