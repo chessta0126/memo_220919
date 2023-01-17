@@ -6,6 +6,27 @@
  	<select id="selectPostListTest" resultType="map">
  		SELECT *
  		FROM `post`
- 		
  	</select>
+ 	
+ 	<insert id="insertPost" parameterType="map">
+ 		INSERT INTO `post`
+ 		(
+ 			`userId`
+ 			,`subject`
+ 			,`content`
+ 			,`imagePath`
+ 			,`createdAt`
+ 			,`updatedAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{userId}
+ 			,#{subject}
+ 			,#{content}
+ 			,#{imagePath}
+ 			,Now()
+ 			,Now()
+ 		)
+ 		
+ 	</insert>
  </mapper>

@@ -22,7 +22,7 @@
 			<jsp:include page="../include/header.jsp"/>
 		</header>
 		
-		<section class="container contents">
+		<section class="container contents my-4">
 			<jsp:include page="../${viewName}.jsp"/>
 		</section>
 		
