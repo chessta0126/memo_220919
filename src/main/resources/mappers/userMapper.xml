@@ -47,7 +47,7 @@
  			`user`
  		WHERE
  			`loginId` = #{loginId}
- 			AND `password` = ${password}
+ 			AND `password` = #{password}
  	</select>
  </mapper>
  
