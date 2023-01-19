@@ -33,7 +33,7 @@ public class PostController {
 		}
 		
 		List<Post> postList = postBO.getPostListByUserId(userId);
-		model.addAttribute("postList","post/postList");
+		model.addAttribute("postList",postList);
 		model.addAttribute("viewName","post/postList");
 		
 		return "template/layout";

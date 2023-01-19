@@ -19,9 +19,9 @@
 			<input type="file" id="file" accept=".jpg,.jpeg,.png,.gif">
 		</div>
 		<div class="d-flex justify-content-between">
-			<button type="button" id="postDeleteBtn" class="btn btn-dark">삭제</button>
+			<button type="button" id="postDeleteBtn" class="btn btn-secondary">삭제</button>
 			<div>
-				<a id="postListBtn" class="btn btn-secondary">목록으로</a>
+				<a href="/post/post_list_view" id="postListBtn" class="btn btn-dark">목록으로</a>
 				<button type="button" id="postUpdateBtn" class="btn btn-info">수정</button>
 			</div>
 		</div>

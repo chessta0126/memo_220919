@@ -18,7 +18,7 @@
 </head>
 <body>
 	<div id="wrap">
-		<header class="d-flex align-items-center p-5">
+		<header class="pl-5">
 			<jsp:include page="../include/header.jsp"/>
 		</header>
 		
@@ -26,7 +26,7 @@
 			<jsp:include page="../${viewName}.jsp"/>
 		</section>
 		
-		<footer class="d-flex justify-content-center align-items-center">
+		<footer>
 			<jsp:include page="../include/footer.jsp"/>
 		</footer>
 	</div>

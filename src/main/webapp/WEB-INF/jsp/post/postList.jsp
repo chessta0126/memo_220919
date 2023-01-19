@@ -26,7 +26,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<div>
+		<div class="d-flex justify-content-end">
 			<a href="/post/post_create_view" class="btn btn-info">글쓰기</a>
 		</div>
 	</div>
