@@ -2,6 +2,7 @@ package com.memo.post.bo;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,5 +35,11 @@ public class PostBO {
 	
 	public List<Post> getPostListByUserId(int userId){
 		return postDAO.selectPostListByUserId(userId);
+	}
+	
+	public Post getPostByPostIdUserId(
+			@Param("postId") int postId
+			,@Param("userId") int userId){
+		return postDAO.selectPostByPostIdUserId(postId,userId);
 	}
 }

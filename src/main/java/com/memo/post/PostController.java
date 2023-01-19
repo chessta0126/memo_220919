@@ -66,7 +66,8 @@ public class PostController {
 		}
 		
 		// DB select by - userId, postId
-		
+		Post post = postBO.getPostByPostIdUserId(postId, userId);
+		model.addAttribute("post",post);
 		model.addAttribute("viewName","post/postDetail");
 		
 		return "template/layout";
