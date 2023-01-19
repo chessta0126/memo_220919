@@ -60,6 +60,6 @@
  			`post`
  		WHERE
  			`userId` = #{userId}
- 			AND `id` =#{postId}
+ 			AND `id` = #{postId}
 	</select>
  </mapper>
