@@ -53,8 +53,8 @@ public class FileManagerService {
 	
 	// imagePath : /images/aaaa_16205468768/sun.png
 	public void deleteFile(String imagePath) {
-		// 겹치는 경로인 "/images" 글자 제거(replace)
-		Path path = Paths.get(FILE_UPLOAD_PATH + imagePath.replace("/images", ""));
+		// 겹치는 경로인 "/images/" 글자 제거(replace)
+		Path path = Paths.get(FILE_UPLOAD_PATH + imagePath.replace("/images/", ""));
 		if(Files.exists(path)) {
 			// 이미지 삭제
 			try {

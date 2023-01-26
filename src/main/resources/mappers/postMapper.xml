@@ -78,4 +78,20 @@
 			`id` = #{postId}
 		AND `userId` = #{userId}
 	</update>
+	
+	<delete id="deletePostByPostIdUserId" parameterType="map">
+		DELETE
+			`id`
+			,`userId`
+			,`subject`
+			,`content`
+			,`imagePath`
+			,`createdAt`
+			,`updatedAt`
+ 		FROM
+ 			`post`
+ 		WHERE
+ 			`userId` = #{userId}
+ 			AND `id` = #{postId}
+	</delete>
  </mapper>

@@ -19,7 +19,7 @@
 			<input type="file" id="file" accept=".jpg,.jpeg,.png,.gif">
 		</div>
 		<div class="d-flex justify-content-between">
-			<button type="button" id="postDeleteBtn" class="btn btn-secondary">삭제</button>
+			<button type="button" id="postDeleteBtn" class="btn btn-secondary" data-post-id="${post.id}">삭제</button>
 			<div>
 				<a href="/post/post_list_view" id="postListBtn" class="btn btn-dark">목록으로</a>
 				<button type="button" id="postUpdateBtn" class="btn btn-info" data-post-id="${post.id}">수정</button>
@@ -66,7 +66,7 @@
 			// AJAX
 			$.ajax({
 				// request
-				type:PUT
+				type:"PUT"
 				,url:"/post/update"
 				,data:formData
 				,enctype:"multipart/form-data" // 파일 업로드를 위한 필수 설정
@@ -84,6 +84,33 @@
 				}
 				,error:function(e){
 					alert("메모 수정 요청이 실패했습니다.")
+				}
+			});
+		});
+		
+		// 글 삭제
+		$('#postDeleteBtn').on(click,function(){
+			alert(111);
+			let postId = $(this).data('post-id');
+			alert(postId);
+			
+			$.ajax({
+				// request
+				type:"DELETE"
+				,url:"/post/delete"
+				,data:{"postId":postId}
+			
+				// response
+				,success:function(data){
+					if(data.result == "성공"){
+						alert("삭제 되었습니다.");
+						location.href = "/post/post_list_view";
+					} else {
+						alert(data.errorMessage);
+					}
+				}
+				,error:function(e){
+					alert("메모를 삭제하는데 실패했습니다");
 				}
 			});
 		});
