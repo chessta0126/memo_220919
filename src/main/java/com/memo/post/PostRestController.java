@@ -98,7 +98,7 @@ public class PostRestController {
 		int userId = (int)session.getAttribute("userId");
 		
 		// int rowCount = postBO
-		int rowCount = 1;
+		int rowCount = postBO.deletePostByPostIdUserId(postId, userId);;
 		Map<String,Object> result = new HashMap<>();
 		if(rowCount > 0) {
 			result.put("code", 1);

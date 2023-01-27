@@ -28,9 +28,9 @@ public class FileManagerService {
 		String filePath = FILE_UPLOAD_PATH + directoryName;
 
 		File directory = new File(filePath);
-		directory.mkdir(); // 폴더 만들기 성공여부
+		// directory.mkdir(); // 폴더 만들기 성공여부
 		if(directory.mkdir() == false) { // 폴더 만들기 실패
-			return null;
+			return null; // imagePath == null
 		}
 
 		// 파일 업로드 : byte 단위로 업로드 된다.

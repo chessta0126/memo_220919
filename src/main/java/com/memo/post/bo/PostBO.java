@@ -1,5 +1,6 @@
 package com.memo.post.bo;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -12,12 +13,15 @@ import org.springframework.web.multipart.MultipartFile;
 import com.memo.common.FileManagerService;
 import com.memo.post.dao.PostDAO;
 import com.memo.post.model.Post;
+import com.mysql.cj.x.protobuf.MysqlxCrud.Collection;
 
 @Service
 public class PostBO {
 
 	// private Logger logger = LoggerFactory.getLogger(postBO.class);
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	private static final int POST_MAX_SIZE = 3;
 	
 	@Autowired
 	private PostDAO postDAO;
@@ -42,6 +46,7 @@ public class PostBO {
 	// 글 수정
 	public void updatePost(int userId, String userLoginId
 			, int postId, String subject, String content, MultipartFile file) {
+		
 		// 기존 글을 가져온다. (이미지가 교체될 때 기존 이미지 제거를 위해)
 		Post post = getPostByPostIdUserId(postId, userId);
 		if(post == null) { // 글이 없을 때
@@ -84,8 +89,40 @@ public class PostBO {
 		return postDAO.deletePostByPostIdUserId(postId, userId);
 	}
 	
-	public List<Post> getPostListByUserId(int userId){
-		return postDAO.selectPostListByUserId(userId);
+	public List<Post> getPostListByUserId(int userId, Integer prevId, Integer nextId){
+		// 게시글 번호 : 10 9 8 | 7 6 5 | 4 3 2 | 1
+		// 만약 4 3 2 페이지에 있을 때
+		// 1) <<이전 클릭: 4보다 큰 3개 id 기준 ASC (5 6 7) 가져옴 -> List reverse(7 6 5)
+		// 2) 다음>> 클릭: 2보다 작은 3개 id 기준 DESC
+		// 3) 첫 페이지(이전, 다음 없음) : DESC 3개
+		String direction = null; // 방향
+		Integer standardId = null; // 기준 postId
+		if(prevId != null) { // 이전
+			direction = "prev";
+			standardId =  prevId;
+
+			List<Post> postList = postDAO.selectPostListByUserId(userId, direction, standardId, POST_MAX_SIZE);
+			Collections.reverse(postList);
+			return postList;
+		} else if(nextId != null) { // 다음
+			direction = "next";
+			standardId =  nextId;
+		}
+		
+		// 첫 페이지일 때, 페이징 안함(standardId, direction = null)
+		// 다음일 때 standardId, direction이 채워져서 넘어감
+		return postDAO.selectPostListByUserId(userId, direction, standardId, POST_MAX_SIZE);
+	}
+	
+	// prevId는 BO가 쓸라고 받아온 거임(DAO한테 보낼 필요 x)
+	public boolean isPrevLastPage(int prevId, int userId) {
+		int maxPostId = postDAO.selectPostIdByUserIdSort(userId, "DESC");
+		return maxPostId == prevId? true : false;
+	}
+
+	public boolean isNextLastPage(int nextId, int userId) {
+		int minPostId = postDAO.selectPostIdByUserIdSort(userId, "ASC");
+		return minPostId == nextId? true : false;
 	}
 	
 	public Post getPostByPostIdUserId(

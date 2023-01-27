@@ -18,6 +18,7 @@
 		<div class="d-flex justify-content-end my-4">
 			<input type="file" id="file" accept=".jpg,.jpeg,.png,.gif">
 		</div>
+		
 		<div class="d-flex justify-content-between">
 			<button type="button" id="postDeleteBtn" class="btn btn-secondary" data-post-id="${post.id}">삭제</button>
 			<div>
@@ -89,10 +90,8 @@
 		});
 		
 		// 글 삭제
-		$('#postDeleteBtn').on(click,function(){
-			alert(111);
+		$('#postDeleteBtn').on('click',function(){
 			let postId = $(this).data('post-id');
-			alert(postId);
 			
 			$.ajax({
 				// request
